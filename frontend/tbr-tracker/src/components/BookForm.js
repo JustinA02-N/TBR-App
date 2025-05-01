@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, TextField, MenuItem, Grid, Paper, Typography } from '@mui/material';
-import axios from 'axios';
+import axios from '../api/axios';
 
 const BookForm = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const BookForm = () => {
   useEffect(() => {
     if (id) {
       // Get book data by book id
-      axios.get(`http://localhost:4000/books/${id}`)
+      axios.get(`/books/${id}`)
         .then(response => {
           setBook(response.data);
         })
@@ -30,7 +30,7 @@ const BookForm = () => {
     e.preventDefault();
     if (id) {
       // Update book by editing book
-      axios.put(`http://localhost:4000/books/${id}`, book)
+      axios.put(`/books/${id}`, book)
         .then(response => {
           console.log('Book updated:', response.data);
           navigate('/books');
@@ -40,7 +40,7 @@ const BookForm = () => {
         });
     } else {
       // Create new book by adding book
-      axios.post('http://localhost:4000/books', book)
+      axios.post('/books', book)
         .then(response => {
           console.log('Book added:', response.data);
           navigate('/books');
