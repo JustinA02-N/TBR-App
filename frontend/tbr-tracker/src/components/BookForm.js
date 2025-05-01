@@ -51,6 +51,19 @@ const BookForm = () => {
     }
   };
 
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this book?')) {
+      axios.delete(`/books/${id}`)
+        .then(() => {
+          console.log('Book deleted');
+          navigate('/books');
+        })
+        .catch(err => {
+          console.error('Error deleting book:', err);
+        });
+    }
+  };
+
   return (
     <Paper elevation={3} sx={{ padding: 3, maxWidth: 600, margin: 'auto' }}>
       <Typography variant="h5" gutterBottom>{id ? 'Edit Book' : 'Add New Book'}</Typography>
@@ -106,6 +119,19 @@ const BookForm = () => {
               {id ? 'Save Changes' : 'Add Book'}
             </Button>
           </Grid>
+
+          {id && (
+            <Grid item xs={12}>
+              <Button
+                variant="outlined"
+                color="error"
+                fullWidth
+                onClick={handleDelete}
+              >
+                Delete Book
+              </Button>
+            </Grid>
+          )}
         </Grid>
       </form>
     </Paper>
