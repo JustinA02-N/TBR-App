@@ -1,5 +1,9 @@
 TBR App Overview
 
+(To Be Read Tracker) is a web application that allows users to manage their personal reading lists. Users can add books, update their reading status, and delete books from the list.
+
+Link to Deployed Webpage using AWS EC2: http://ec2-18-223-107-195.us-east-2.compute.amazonaws.com/books
+
 TBR App is a web application developed using:
 Frontend: React
 Backend: Hapi.js
